@@ -38,25 +38,26 @@ None for the last release.
 ## Installation
 
 1. Dowload ArcDashboard.pbit and ProductLifecycle.xlsx and save to local folder C:\ArcDashboard.
-> **Note:**
+> [!NOTE]
 > If saving to a different folder path, follow the instructions further down to modify the PowerBI report data source path for ProductLifecycle.xlsx
 
 2. Open the file ArcDashboard.pbit. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.
-    
+
     <details>
         <summary>Authenticate with the user's current credentials and Entra ID tenant</summary>
-        1. In the authentication prompt, click on your logged in account
-        2. After the authentication process completes, click "Connect"
+            1. In the authentication prompt, click on your logged in account<br/>
+            2. After the authentication process completes, click "Connect"
     </details>
     <details>
         <summary>Authenticate with alternate credentials/Entra ID tenant</summary>
-        1. In the authentication prompt, click on "Use another account"
-        2. Click "Sign-in options"
-        3. Click "Sign in to an organization"
-        4. Type in the Entra ID tenant domain name and click "Next"
-        5. Click "Use another account", enter your credentials and complete the authentication process
-        6. After the authentication process completes, click "Connect"
+            1. In the authentication prompt, click on "Use another account"<br/>
+            2. Click "Sign-in options"<br/>
+            3. Click "Sign in to an organization"<br/>
+            4. Type in the Entra ID tenant domain name and click "Next"<br/>
+            5. Click "Use another account", enter your credentials and complete the authentication process<br/>
+            6. After the authentication process completes, click "Connect"
     </details>
 
-3. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.
-4. When completed, the dashboard visuals will refresh with your environment data.
+3. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
+4. When completed, the dashboard visuals will refresh with your environment data.<br/>
+5. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
