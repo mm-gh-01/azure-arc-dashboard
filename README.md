@@ -17,8 +17,7 @@ To get started with the Adaptive Cloud Situational Awareness Dashboard, follow t
 
 - Node.js
 - npm
-- PowerBI Desktop installed locally
-Download Microsoft Power BI Desktop from Official Microsoft Download Center ([text](https://www.microsoft.com/en-us/download/details.aspx?id=58494))
+- PowerBI Desktop installed locally ([Download Microsoft Power BI Desktop from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=58494))
 - Azure RBAC read permissions on the following resource types:
     - Microsoft.HybridCompute/machines
     - Microsoft.Compute/virtualmachines
