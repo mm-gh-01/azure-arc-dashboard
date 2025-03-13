@@ -4,6 +4,11 @@ Welcome to the Adaptive Cloud Situational Awareness Dashboard repository. This p
 
 The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and an auxiliary metadata enrichment Excel file (ProductLifecycle.xlsx). The data is retrieved using the built-in PowerBI Azure Resource Graph connector and three KQL queries. 
 
+## Contents
+In this file, you will find:
+- [Dashboard sample screens](#Sample-screens)
+- [Installation instructions](#Installation)
+
 ## Sample screens
 
 ### Operating system and SQL Server estate
@@ -59,6 +64,8 @@ Detailed list of Arc clients with agent version, connectivity status and additio
 
 ![Sample report: Arc agents hygiene](images/samples/sample_arcagents.jpg)
 
+</details>
+
 ## What's new
 
 ### March 12, 2025
@@ -90,6 +97,7 @@ None for the last release.
 > If saving to a different folder path, follow the instructions further down to modify the PowerBI report data source path for ProductLifecycle.xlsx
 
 2. Open the file ArcDashboard.pbit. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.
+![pbi sign-in](images/instructions/pbi_signin.png)
 
     <details>
         <summary>Authenticate with the user's current credentials and Entra ID tenant</summary>
@@ -106,6 +114,6 @@ None for the last release.
             6. After the authentication process completes, click "Connect"
     </details>
 
-3. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
-4. When completed, the dashboard visuals will refresh with your environment data.<br/>
-5. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
+4. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
+5. When completed, the dashboard visuals will refresh with your environment data.<br/>
+6. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
