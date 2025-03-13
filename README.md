@@ -4,13 +4,6 @@ Welcome to the Adaptive Cloud Situational Awareness Dashboard repository. This p
 
 The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and an auxiliary metadata enrichment Excel file (ProductLifecycle.xlsx). The data is retrieved using the built-in PowerBI Azure Resource Graph connector and three KQL queries. 
 
-## Features
-
-- Real-time monitoring of cloud resources
-- Customizable alerts and notifications
-- Detailed analytics and reporting
-- Integration with various cloud providers
-
 ## Sample screens
 
 ### Operating system and SQL Server estate
