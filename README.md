@@ -8,8 +8,10 @@ The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and
 In this file, you will find:
 - [Dashboard sample screens](#Sample-screens)
 - [Installation instructions](#Installation)
+- [Enrichment metadata maintenance](#Metadata-maintenance)
 
 ## Sample screens
+In the sections below you will find sample dashboard screens populated with test environment data.
 
 ### Operating system and SQL Server estate
 A unified view of all Arc-enabled servers (on-premises and other clouds) and Azure-native virtual machines.
@@ -117,3 +119,6 @@ None for the last release.
 4. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
 5. When completed, the dashboard visuals will refresh with your environment data.<br/>
 6. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
+
+## Metadata maintenance
+Refer to the instructions in [MetadataMaintenance.md](MetadataMaintenance.md)
