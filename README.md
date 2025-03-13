@@ -102,26 +102,25 @@ None for the last release.
     <details>
         <summary>Authenticate with the user's current credentials and Entra ID tenant</summary>
             1. In the authentication prompt, click on your logged in account<br/>
-            <img src="[https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_current1.png]">
-            2. After the authentication process completes, click "Connect"<br/>
-            ![](images/instructions/pbi_signin_current2.png)
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_current1.png"><br/>
+            2. After the authentication process completes, click <b>Connect</b><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_current2.png"><br/>
     </details>
     <details>
         <summary>Authenticate with alternate credentials/Entra ID tenant</summary>
-            1. In the authentication prompt, click on "Use another account"<br/>
-            ![](images/instructions/pbi_signin_alt1.png)
-            2. Click "Sign-in options"<br/>
-            ![](images/instructions/pbi_signin_alt2.png)
-            3. Click "Sign in to an organization"<br/>
-            ![](images/instructions/pbi_signin_alt3.png)
-            4. Type in the Entra ID tenant domain name and click "Next"<br/>
-            ![](images/instructions/pbi_signin_alt4.png)
-
-            ![](images/instructions/pbi_signin_alt5.png)
-            5. Click "Use another account", enter your credentials and complete the authentication process<br/>
-            ![](images/instructions/pbi_signin_alt6.png)
-            6. After the authentication process completes, click "Connect"
-            ![](images/instructions/pbi_signin_alt7.png)
+            1. In the authentication prompt, click on <b>Use another account</b><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt1.png"><br/>
+            2. Click <b>Sign-in options</b><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt2.png"><br/>
+            3. Click <b>Sign in to an organization</b><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt3.png"><br/>
+            4. Type in the Entra ID tenant domain name and click <b>Next</b><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt4.png"><br/>
+            <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt5.png"><br/>
+            5. Click <b>Use another account</b>, enter your credentials and complete the authentication process<br/>
+           <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt6.png"><br/>
+            6. After the authentication process completes, click <b>Connect</b>
+           <img src="https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_alt7.png"><br/>
     </details>
 
 3. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
