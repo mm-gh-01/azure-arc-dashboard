@@ -96,36 +96,36 @@ None for the last release.
 > [!NOTE]
 > If saving to a different folder path, follow the instructions further down to modify the PowerBI report data source path for ProductLifecycle.xlsx
 
-2. Open the file ArcDashboard.pbit. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.
-!(images/instructions/pbi_signin.png)
+2. Open the file ArcDashboard.pbit. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.<br/>
+![](images/instructions/pbi_signin.png)
 
     <details>
         <summary>Authenticate with the user's current credentials and Entra ID tenant</summary>
             1. In the authentication prompt, click on your logged in account<br/>
-            !(images/instructions/pbi_signin_current1.png)
-            2. After the authentication process completes, click "Connect"
-            !(images/instructions/pbi_signin_current2.png)
+            <img src="[https://github.com/mm-gh-01/azure-arc-dashboard/blob/main/images/instructions/pbi_signin_current1.png]">
+            2. After the authentication process completes, click "Connect"<br/>
+            ![](images/instructions/pbi_signin_current2.png)
     </details>
     <details>
         <summary>Authenticate with alternate credentials/Entra ID tenant</summary>
             1. In the authentication prompt, click on "Use another account"<br/>
-            !(images/instructions/alt1.png)
+            ![](images/instructions/pbi_signin_alt1.png)
             2. Click "Sign-in options"<br/>
-            !(images/instructions/alt2.png)
+            ![](images/instructions/pbi_signin_alt2.png)
             3. Click "Sign in to an organization"<br/>
-            !(images/instructions/alt3.png)
+            ![](images/instructions/pbi_signin_alt3.png)
             4. Type in the Entra ID tenant domain name and click "Next"<br/>
-            !(images/instructions/alt4.png)
+            ![](images/instructions/pbi_signin_alt4.png)
 
-            !(images/instructions/alt5.png)
+            ![](images/instructions/pbi_signin_alt5.png)
             5. Click "Use another account", enter your credentials and complete the authentication process<br/>
-            !(images/instructions/alt6.png)
+            ![](images/instructions/pbi_signin_alt6.png)
             6. After the authentication process completes, click "Connect"
-            !(images/instructions/alt7.png)
+            ![](images/instructions/pbi_signin_alt7.png)
     </details>
 
 3. The datasets should start refreshing now. Depending on the number of Azure virtual machines, Azure SQL Database, Azure SQL Managed Instance, and Arc-managed servers, this might take a while.<br/>
-!(images/instructions/pbi_signin_current3.png)
+![](images/instructions/pbi_signin_current3.png)
 4. When completed, the dashboard visuals will refresh with your environment data.<br/>
 5. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
 
