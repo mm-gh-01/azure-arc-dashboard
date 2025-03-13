@@ -15,36 +15,56 @@ The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and
 
 ### Operating system and SQL Server estate
 A unified view of all Arc-enabled servers (on-premises and other clouds) and Azure-native virtual machines.
-![sample_overall](https://github.com/user-attachments/assets/1b64ff87-c7ab-461a-978f-dbbce6b87559)
+
+![Sample report: Operating system and SQL Server estate](images/samples/sample_overall.jpg)
 
 ### Lifecycle Horizons
 This report presents a forward view end of extended support dates for operating systems (Windows and Linux) and SQL Server versions. The product lifecycle dates are externalized in the ProductLifecycle.xlsx. A link is included with the source of support dates for each product where such dates have been recorded.
 
 For Microsoft Windows and SQL Server, Extended Security Updates (ESU) costs are estimated based on current public pricing (for Windows and SQL Server versions currently under ESU) and assumed >>>
 
+![Sample report: Lifecycle Horizons](images/samples/sample_lifecycle.jpg)
+
 ### OS Variants
 A detailed report of all Arc-enabled and Azure-native servers
+
+![Sample report: OS Variants](images/samples/sample_os.jpg)
 
 ### Arc and IaaS SQL Estate
 Summary metrics of the entire IaaS SQL estate.
 
+![Sample report: Arc and IaaS SQL Estate](images/samples/sample_sql_iaas.jpg)
+
 ### Arc and IaaS SQL details
 A detailed report of all Arc-enabled SQL servers, including various metadata for instance and database.
+
+![Sample report: Arc and IaaS SQL details](images/samples/sample_sql_iaas_details.jpg)
+
 
 ### Arc SQL Migration Readiness
 A unified view of the Arc-enabled SQL servers [Migration Assessment (preview)](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/migration-assessment) results.
 
+![Sample report: Arc SQL Migration Readiness](images/samples/sample_sql_iaas_migassess.jpg)
+
 ### All SQL Estate
 A unified view of all IaaS and PaaS SQL estate (Arc-enabled, Azure SQL Database, Azure SQL Managed Instance).
+
+![Sample report: All SQL Estate](images/samples/sample_sql_overall.jpg)
 
 ### All SQL Details
 A detailed report of all Arc-enabled SQL servers, Azure SQL Database, and Azure SQL MI including various metadata for instance and database.
 
+![Sample report: All SQL Details](images/samples/sample_sql_overall_detail.jpg)
+
 ### Audit: Azure SQL PaaS Logins
 List of users and groups, granted administrator permissions on Azure SQL Database or Azure SQL MI instances.
 
+![Sample report: Audit: Azure SQL PaaS Logins](images/samples/sample_sql_paas_logins.jpg)
+
 ### Arc agents hygiene
 Detailed list of Arc clients with agent version, connectivity status and additional metadata. Primarily aimed at ongoing Arc agents maintenance (version upgrades, connectivity issues resolution, decommissioning.)
+
+![Sample report: Arc agents hygiene](images/samples/sample_arcagents.jpg)
 
 ## What's new
 
