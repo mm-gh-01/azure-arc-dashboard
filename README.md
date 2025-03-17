@@ -9,6 +9,7 @@ In this file, you will find:
 - [Dashboard sample screens](#Sample-screens)
 - [Installation instructions](#Installation)
 - [Enrichment metadata maintenance](#Metadata-maintenance)
+- [KQL data source queries](#KQL-data-source-queries)
 
 ## Sample screens
 In the sections below you will find sample dashboard screens populated with test environment data.
@@ -130,3 +131,52 @@ None for the last release.
 
 ## Metadata maintenance
 Refer to the instructions in [MetadataMaintenance.md](MetadataMaintenance.md)
+
+## KQL data source queries
+The PowerBI report uses the following base Kusto queries. Some of the returned properties are further expanded in the PowerBI query model.
+
+### ArcAgents
+Retrieves a list of all Arc-enabled machines and Azure-native virtual machines.
+
+```
+resources
+| where type == 'microsoft.hybridcompute/machines' or type == 'microsoft.compute/virtualmachines'
+| extend arcAgentVersion = tostring(properties.agentVersion)
+| extend arcWsEsuStatus = properties.licenseProfile.esuProfile.licenseAssignmentState 
+| extend cloud = iif(type == 'microsoft.compute/virtualmachines',"Azure",iif(tostring(properties.cloudMetadata.provider) == "N/A" or tostring(properties.cloudMetadata.provider) == "", "On-premises", tostring(properties.cloudMetadata.provider)))
+| extend isVirtual = iff(properties.detectedProperties.model == "Virtual Machine" or properties.detectedProperties.manufacturer == "VMware, Inc." or properties.detectedProperties.manufacturer == "Nutanix" or properties.cloudMetadata.provider == "AWS" or properties.cloudMetadata.provider == "GCP" or type == 'microsoft.compute/virtualmachines', true, false)
+| extend model = iif(cloud == "Azure","Virtual Machine",tostring(properties.detectedProperties.model))
+| extend manufacturer = iif(cloud == "Azure","Microsoft Corporation",tostring(properties.detectedProperties.manufacturer))
+| extend cpuTotalCores = iif(type == 'microsoft.compute/virtualmachines', toint(extract(@"(\d+)",0,extract(@"_(\D+)(\d+)_*",0,tostring(properties.hardwareProfile.vmSize)))),toint(properties.detectedProperties.logicalCoreCount))
+| extend operatingSystem = iif(type == 'microsoft.compute/virtualmachines', strcat(properties.storageProfile.osDisk.osType," ",iif(isnotempty(properties.storageProfile.imageReference.sku),strcat(properties.storageProfile.imageReference.publisher," ",iif(properties.storageProfile.imageReference.publisher == 'MicrosoftWindowsServer',extract(@"^(\d+)",0,tostring(properties.storageProfile.imageReference.exactVersion)),extract(@"^(\d+).(\d+)",0,tostring(properties.storageProfile.imageReference.exactVersion)))," ",properties.storageProfile.imageReference.offer),properties.storageProfile.imageReference.sku)),tostring(properties.osSku))
+| extend operatingSystem = iff(type == 'microsoft.compute/virtualmachines' and properties.licenseType == 'Windows_Client',properties.extended.instanceView.osName,operatingSystem)
+| extend operatingSystem = iif(isempty(operatingSystem),"Unknown",operatingSystem)
+| extend isWindowsServer = iff(tolower(operatingSystem) has "windows server" or tolower(operatingSystem) has "windowsserver",true,false)
+| extend isWsPhysicalDc = iff(properties.osSku has "Server 2012" and properties.osSku has "Datacenter" and isVirtual == "Physical",bool(true),bool(false))
+| project name,cpuTotalCores,isVirtual,azureResourceGroup=resourceGroup,arcWsEsuStatus,operatingSystem,model,manufacturer,cloud,properties,isWindowsServer,isWsPhysicalDc,tags,id,location,subscriptionId
+```
+
+### SQLAll
+Retrieves all Arc-enabled SQL instances, Azure SQL IaaS extension virtual machines, Azure SQL Database, and Azure SQL Managed Instance resources.
+
+```
+resources
+| where type =~ 'Microsoft.Sql/servers' or type == 'microsoft.azurearcdata/sqlserverinstances' or type == 'microsoft.sql/managedinstances' or type == 'Microsoft.SqlVirtualMachine/sqlVirtualMachines'
+| extend sqlVersion = properties.version, sqlEdition=properties.edition, bpa = iff(notnull(properties.settings.AssessmentSettings),"Enabled","Disabled")
+| extend arcMachineName = iff(type == 'microsoft.azurearcdata/sqlserverinstances' or type == 'Microsoft.SqlVirtualMachine/sqlVirtualMachines',iff(indexof(name,"_") <= 0,name,substring(name,0,indexof(name,"_"))),'Not applicable')
+| extend sqlVersion = iff(type == 'microsoft.sql/managedinstances',strcat(sku.name,"-",sku.tier),sqlVersion)
+```
+
+### SQLAllDatabases
+Retrieves all databases associated with Arc-enabled SQL servers, Azure SQL Database, and Azure SQL Managemed Instance resources.
+
+```
+resources
+| where  type =~ "microsoft.azurearcdata/sqlserverinstances/databases" or type =~ "microsoft.sql/managedInstances/databases" or type =~ "microsoft.sql/servers/databases"
+| extend sqlInstanceName = tostring(split(tostring(id),"/")[8]), sqlInstanceId = substring(id,0,indexof(tolower(id),"/databases"))
+| extend parentSqlResourceId = substring(id,0,indexof(tolower(id),"/databases"))
+| extend reverseParentSqlResId = reverse(parentSqlResourceId)
+| extend parentSqlResourceName = reverse(substring(reverseParentSqlResId,0,indexof(reverseParentSqlResId,"/")))
+| extend arcMachineName = iff(type =~ "microsoft.azurearcdata/sqlserverinstances/databases" or type == 'Microsoft.SqlVirtualMachine/sqlVirtualMachines',iff(indexof(sqlInstanceName,"_") <= 0,sqlInstanceName,substring(sqlInstanceName,0,indexof(sqlInstanceName,"_"))),"Not applicable")
+| project-away reverseParentSqlResId
+```
