@@ -93,11 +93,11 @@ None for the last release.
 
 ## Installation
 
-1. Dowload ArcDashboard.pbit and ProductLifecycle.xlsx and save to local folder C:\ArcDashboard.
+1. Dowload [ArcDashboard.pbit](ArcDashboard.pbit) and [ProductLifecycle.xlsx](ProductLifecycle.xlsx) and save to local folder **C:\ArcDashboard**.
 > [!NOTE]
 > If saving to a different folder path, follow the instructions further down to modify the PowerBI report data source path for ProductLifecycle.xlsx
 
-2. Open the file ArcDashboard.pbit. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.<br/>
+2. Open the file **ArcDashboard.pbit**. Wait for PowerBI Desktop to load and begin refreshing data. When the authentication prompt pops up, click **Sign in**. Follow one of the two procedures below, depending on whether you are authenticating to the current or alternative Entra ID tenant.<br/>
 ![](images/instructions/pbi_signin.png)
 
     <details>
