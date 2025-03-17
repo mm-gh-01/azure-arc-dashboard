@@ -22,8 +22,8 @@ To resolve these names to user-friendly strings:
 6.	Open in Excel *ProductLifecycle.xlsx*. Copy and paste the rows from the step above to the end of the table<br/>
 ![](images/instructions/metadata5.png)
 
-7.	Fill in at least the **Product friendly name** and **Product family** columns. Save and close *ProductLifecycle.xlsx* when finished.
-8.	In PowerBI Desktop, refresh the **ProductLifecycle1** dataset by right clicking and selecting **Refresh data**
+7.	Fill in at least the **Product friendly name** and **Product family** columns. Save and close *ProductLifecycle.xlsx* when finished.<br/>
+8.	In PowerBI Desktop, refresh the **ProductLifecycle1** dataset by right clicking and selecting **Refresh data**<br/>
 ![](images/instructions/metadata6.png)
 
 9.	The tables should now refresh with the updated metadata and the yellow highlight should disappear.
