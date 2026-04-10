@@ -1,6 +1,6 @@
 # Adaptive Cloud Situational Awareness Dashboard
 
-Welcome to the Adaptive Cloud Situational Awareness Dashboard repository. This project aims to provide a ready to try PowerBI dashboard for a consolidated view of your Azure-native and Arc-enabled operating systems (Windows and Linux) and SQL databases (IaaS and PaaS) estate. 
+Welcome to the Adaptive Cloud Situational Awareness Dashboard repository. This project aims to provide a ready to try PowerBI dashboard for a unified view of your Azure-native and Arc-enabled operating systems (Windows and Linux) and SQL (IaaS and PaaS) estate. 
 
 The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and an auxiliary metadata enrichment Excel file (ProductLifecycle.xlsx). The data is retrieved using the built-in PowerBI Azure Resource Graph connector and three KQL queries. 
 
@@ -46,6 +46,11 @@ A detailed report of all Arc-enabled SQL servers, including various metadata for
 
 ![Sample report: Arc and IaaS SQL details](images/samples/sample_sql_iaas_details.jpg)
 
+### Arc SQL cores
+A detailed report of SQL editions, versions, core count by machine and license type. Intended for procurement and software asset management (SAM) teams to understand SQL Server footprint across the environment.
+
+![Sample report: Arc and IaaS SQL details](images/samples/sample_sql_cores.jpg)
+
 
 ### Arc SQL Migration Readiness
 A unified view of the Arc-enabled SQL servers [Migration Assessment (preview)](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/migration-assessment) results.
@@ -72,7 +77,19 @@ Detailed list of Arc clients with agent version, connectivity status and additio
 
 ![Sample report: Arc agents hygiene](images/samples/sample_arcagents.jpg)
 
+### Arc SQL instances hygiene
+Detailed list of Arc SQL instances with parent Arc agent status, SQL components, and days since last SQL inventory. Aimed at identifying SQL extension reporting issues and cleanup of decommissioned SQL instances.)
+
+![Sample report: Arc agents hygiene](images/samples/sample_sql_instancehealth.jpg)
+
 ## What's new
+
+### April 10, 2025
+- New reports: SQL cores, Arc SQL instances hygiene
+- Updated report "Lifecycle Horizons" report graph years
+- Visual improvements in several reports
+- Data relationships schema changes (associating SQL instances with parent Arc machine, ProductLifecycle dataset split into separate for SQL and everything else) 
+
 
 ### March 12, 2025
 - Added telemetry and new report for Arc-enabled SQL Migration Assessment (preview) results
@@ -166,10 +183,12 @@ Retrieves all Arc-enabled SQL instances, Azure SQL IaaS extension virtual machin
 
 ```
 resources
-| where type =~ 'Microsoft.Sql/servers' or type == 'microsoft.azurearcdata/sqlserverinstances' or type == 'microsoft.sql/managedinstances' or type == 'Microsoft.SqlVirtualMachine/sqlVirtualMachines'
+| where type =~ 'Microsoft.Sql/servers' or type =~ 'microsoft.azurearcdata/sqlserverinstances' or type =~ 'microsoft.sql/managedinstances' or type =~ 'Microsoft.SqlVirtualMachine/sqlVirtualMachines'
 | extend sqlVersion = properties.version, sqlEdition=properties.edition, bpa = iff(notnull(properties.settings.AssessmentSettings),"Enabled","Disabled")
-| extend arcMachineName = iff(type == 'microsoft.azurearcdata/sqlserverinstances' or type == 'Microsoft.SqlVirtualMachine/sqlVirtualMachines',iff(indexof(name,"_") <= 0,name,substring(name,0,indexof(name,"_"))),'Not applicable')
-| extend sqlVersion = iff(type == 'microsoft.sql/managedinstances',strcat(sku.name,"-",sku.tier),sqlVersion)
+| extend arcMachineName = iff(type =~ 'microsoft.azurearcdata/sqlserverinstances' or type =~ 'Microsoft.SqlVirtualMachine/sqlVirtualMachines',iff(indexof(name,"_") <= 0,name,substring(name,0,indexof(name,"_"))),'Not applicable')
+| extend sqlVersion = iff(type =~ 'microsoft.sql/managedinstances',strcat(sku.name,"-",sku.tier),sqlVersion)
+| extend arcMachineResourceId = properties.containerResourceId
+| extend arcLastInventoryUpdateDiffDays = datetime_diff('day', now(), todatetime(properties.lastInventoryUploadTime))
 ```
 
 ### SQLAllDatabases
