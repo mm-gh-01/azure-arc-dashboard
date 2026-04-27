@@ -99,7 +99,7 @@ Detailed list of Arc SQL instances with parent Arc agent status, SQL components,
 
 ### April 27, 2025
 
-- Updated ProductLifecycle.xlsx (![SQL Server 2016 ESU prices](https://azure.microsoft.com/en-us/pricing/details/azure-arc/core-control-plane/), removed SQL Server 2012 ESU prices, changed ESU currency for SQL and Windows Server to USD)
+- Updated ProductLifecycle.xlsx (SQL Server 2016 ESU prices, removed SQL Server 2012 ESU prices, changed ESU currency for SQL and Windows Server to USD)
 
 ### April 10, 2025
 
