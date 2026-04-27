@@ -5,26 +5,30 @@ Welcome to the Adaptive Cloud Situational Awareness Dashboard repository. This p
 The dashboard consists of a single PowerBI template file (ArcDashboard.pbit) and an auxiliary metadata enrichment Excel file (ProductLifecycle.xlsx). The data is retrieved using the built-in PowerBI Azure Resource Graph connector and three KQL queries. 
 
 ## Contents
+
 In this file, you will find:
+
 - [Dashboard sample screens](#Sample-screens)
 - [Installation instructions](#Installation)
 - [Enrichment metadata maintenance](#Metadata-maintenance)
 - [KQL data source queries](#KQL-data-source-queries)
 
 ## Sample screens
+
 In the sections below you will find sample dashboard screens populated with test environment data.
 
 ### Operating system and SQL Server estate
+
 A unified view of all Arc-enabled servers (on-premises and other clouds) and Azure-native virtual machines.
 
 ![Sample report: Operating system and SQL Server estate](images/samples/sample_overall.jpg)
-
 
 If there are Arc-managed servers that are hosted at AWS or GCP, some of the visuals will reflect that breakdown too:
 
 ![Sample report: Operating system and SQL Server estate multi-cloud](images/samples/sample_overall_multicloud.jpg)
 
 ### Lifecycle Horizons
+
 This report presents a forward view end of extended support dates for operating systems (Windows and Linux) and SQL Server versions. The product lifecycle dates are externalized in the ProductLifecycle.xlsx. A link is included with the source of support dates for each product where such dates have been recorded.
 
 For some Microsoft Windows Server and SQL Server, potential future Extended Security Updates (ESU) costs are estimated based on current public pricing for Windows Server 2012/R2 and SQL Server 2014 (https://azure.microsoft.com/en-us/pricing/details/azure-arc/core-control-plane/#pricing).
@@ -32,66 +36,80 @@ For some Microsoft Windows Server and SQL Server, potential future Extended Secu
 ![Sample report: Lifecycle Horizons](images/samples/sample_lifecycle.jpg)
 
 ### OS Variants
+
 A detailed report of all Arc-enabled and Azure-native servers
 
 ![Sample report: OS Variants](images/samples/sample_os.jpg)
 
 ### Arc and IaaS SQL Estate
+
 Summary metrics of the entire IaaS SQL estate.
 
 ![Sample report: Arc and IaaS SQL Estate](images/samples/sample_sql_iaas.jpg)
 
 ### Arc and IaaS SQL details
+
 A detailed report of all Arc-enabled SQL servers, including various metadata for instance and database.
 
 ![Sample report: Arc and IaaS SQL details](images/samples/sample_sql_iaas_details.jpg)
 
 ### Arc SQL cores
+
 A detailed report of SQL editions, versions, core count by machine and license type. Intended for procurement and software asset management (SAM) teams to understand SQL Server footprint across the environment.
 
 ![Sample report: Arc and IaaS SQL details](images/samples/sample_sql_cores.jpg)
 
-
 ### Arc SQL Migration Readiness
+
 A unified view of the Arc-enabled SQL servers [Migration Assessment (preview)](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/migration-assessment) results.
 
 ![Sample report: Arc SQL Migration Readiness](images/samples/sample_sql_iaas_migassess.jpg)
 
 ### All SQL Estate
+
 A unified view of all IaaS and PaaS SQL estate (Arc-enabled, Azure SQL Database, Azure SQL Managed Instance).
 
 ![Sample report: All SQL Estate](images/samples/sample_sql_overall.jpg)
 
 ### All SQL Details
+
 A detailed report of all Arc-enabled SQL servers, Azure SQL Database, and Azure SQL MI including various metadata for instance and database.
 
 ![Sample report: All SQL Details](images/samples/sample_sql_overall_detail.jpg)
 
 ### Audit: Azure SQL PaaS Logins
+
 List of users and groups, granted administrator permissions on Azure SQL Database or Azure SQL MI instances.
 
 ![Sample report: Audit: Azure SQL PaaS Logins](images/samples/sample_sql_paas_logins.jpg)
 
 ### Arc agents hygiene
+
 Detailed list of Arc clients with agent version, connectivity status and additional metadata. Primarily aimed at ongoing Arc agents maintenance (version upgrades, connectivity issues resolution, decommissioning.)
 
 ![Sample report: Arc agents hygiene](images/samples/sample_arcagents.jpg)
 
 ### Arc SQL instances hygiene
+
 Detailed list of Arc SQL instances with parent Arc agent status, SQL components, and days since last SQL inventory. Aimed at identifying SQL extension reporting issues and cleanup of decommissioned SQL instances.)
 
 ![Sample report: Arc agents hygiene](images/samples/sample_sql_instancehealth.jpg)
 
 ## What's new
 
+### April 27, 2025
+
+- Updated ProductLifecycle.xlsx (![SQL Server 2016 ESU prices](https://azure.microsoft.com/en-us/pricing/details/azure-arc/core-control-plane/), removed SQL Server 2012 ESU prices, changed ESU currency for SQL and Windows Server to USD)
+
 ### April 10, 2025
+
 - New reports: SQL cores, Arc SQL instances hygiene
 - Updated report "Lifecycle Horizons" report graph years
 - Visual improvements in several reports
-- Data relationships schema changes (associating SQL instances with parent Arc machine, ProductLifecycle dataset split into separate for SQL and everything else) 
-
+- Data relationships schema changes (associating SQL instances with parent Arc machine, ProductLifecycle dataset split into separate for SQL and everything else)
 
 ### March 12, 2025
+
 - Added telemetry and new report for Arc-enabled SQL Migration Assessment (preview) results
 - Updated various SQL reports with migration assessment enablement or readiness status
 - Updated the "Lifecycle Horizons" report graphs dates and visual styling
@@ -100,17 +118,18 @@ Detailed list of Arc SQL instances with parent Arc agent status, SQL components,
 
 - PowerBI Desktop installed locally ([Download Microsoft Power BI Desktop from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=58494))
 - Azure RBAC read permissions on the following resource types:
-    - Microsoft.HybridCompute/machines
-    - Microsoft.Compute/virtualmachines
-    - Microsoft.AzureArcData/sqlserverinstances
-    - Microsoft.AzureArcData/sqlserverinstances/databases
-    - Microsoft.Sql/servers
-    - Microsoft.Sql/servers/databases
-    - Microsoft.Sql/managedinstances
-    - Microsoft.Sql/managedInstances/databases
-    - Microsoft.SqlVirtualMachine/sqlVirtualMachines
+  - Microsoft.HybridCompute/machines
+  - Microsoft.Compute/virtualmachines
+  - Microsoft.AzureArcData/sqlserverinstances
+  - Microsoft.AzureArcData/sqlserverinstances/databases
+  - Microsoft.Sql/servers
+  - Microsoft.Sql/servers/databases
+  - Microsoft.Sql/managedinstances
+  - Microsoft.Sql/managedInstances/databases
+  - Microsoft.SqlVirtualMachine/sqlVirtualMachines
 
 ## Known issues
+
 None for the last release.
 
 ## Installation
@@ -152,12 +171,15 @@ None for the last release.
 5. Finally, save the report as a PowerBI .pbix file. The query results data is persisted in the file so you can share with others who do not have direct Azure permissions to refresh the data.
 
 ## Metadata maintenance
+
 Refer to the instructions in [MetadataMaintenance.md](MetadataMaintenance.md)
 
 ## KQL data source queries
+
 The PowerBI report uses the following base Kusto queries. Some of the returned properties are further expanded in the PowerBI query model.
 
 ### ArcAgents
+
 Retrieves a list of all Arc-enabled machines and Azure-native virtual machines.
 
 ```
@@ -179,6 +201,7 @@ resources
 ```
 
 ### SQLAll
+
 Retrieves all Arc-enabled SQL instances, Azure SQL IaaS extension virtual machines, Azure SQL Database, and Azure SQL Managed Instance resources.
 
 ```
@@ -192,6 +215,7 @@ resources
 ```
 
 ### SQLAllDatabases
+
 Retrieves all databases associated with Arc-enabled SQL servers, Azure SQL Database, and Azure SQL Managemed Instance resources.
 
 ```
