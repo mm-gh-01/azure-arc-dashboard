@@ -117,16 +117,16 @@ Detailed list of Arc SQL instances with parent Arc agent status, SQL components,
 ## Prerequisites
 
 - PowerBI Desktop installed locally ([Download Microsoft Power BI Desktop from Official Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=58494))
-- Azure RBAC read permissions on the following resource types:
-  - Microsoft.HybridCompute/machines
-  - Microsoft.Compute/virtualmachines
-  - Microsoft.AzureArcData/sqlserverinstances
-  - Microsoft.AzureArcData/sqlserverinstances/databases
-  - Microsoft.Sql/servers
-  - Microsoft.Sql/servers/databases
-  - Microsoft.Sql/managedinstances
-  - Microsoft.Sql/managedInstances/databases
-  - Microsoft.SqlVirtualMachine/sqlVirtualMachines
+- The following Azure RBAC read permissions:
+  - Microsoft.AzureArcData/sqlServerInstances/read
+  - Microsoft.AzureArcData/sqlServerInstances/databases/read
+  - Microsoft.HybridCompute/machines/read
+  - Microsoft.Compute/virtualMachines/read
+  - Microsoft.SqlVirtualMachine/sqlVirtualMachines/read
+  - Microsoft.Sql/managedInstances/read
+  - Microsoft.Sql/managedInstances/databases/read
+  - Microsoft.Sql/servers/read
+  - Microsoft.Sql/servers/databases/read
 
 ## Known issues
 
