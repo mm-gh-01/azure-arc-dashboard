@@ -31,7 +31,7 @@ If there are Arc-managed servers that are hosted at AWS or GCP, some of the visu
 
 This report presents a forward view end of extended support dates for operating systems (Windows and Linux) and SQL Server versions. The product lifecycle dates are externalized in the ProductLifecycle.xlsx. A link is included with the source of support dates for each product where such dates have been recorded.
 
-For some Microsoft Windows Server and SQL Server, potential future Extended Security Updates (ESU) costs are estimated based on current public pricing for Windows Server 2012/R2 and SQL Server 2014 (https://azure.microsoft.com/en-us/pricing/details/azure-arc/core-control-plane/#pricing).
+For some Microsoft Windows Server and SQL Server, potential future Extended Security Updates (ESU) costs are estimated based on current public pricing for Windows Server 2012/R2 and SQL Server 2014/2016 (https://azure.microsoft.com/en-us/pricing/details/azure-arc/core-control-plane/#pricing). The ESU prices in ProductLifecycle.xlsx are in USD and normalized to 1 core.
 
 ![Sample report: Lifecycle Horizons](images/samples/sample_lifecycle.jpg)
 
